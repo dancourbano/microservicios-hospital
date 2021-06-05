@@ -1,0 +1,5 @@
+package com.daniel.cjavasignos.dto;
+
+public class EmpleadoDto {
+
+}

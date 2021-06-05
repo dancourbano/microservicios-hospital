@@ -1,0 +1,10 @@
+package com.daniel.cjavasignos.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.daniel.cjavasignos.model.Empleado;
+ 
+
+public interface EmpleadoRepository extends CrudRepository<Empleado, Integer>{
+
+}

@@ -1,0 +1,14 @@
+server:
+  port: 8092
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:8761/eureka
+zuul:
+  routes:
+    empleado:
+      service-id: servicio.empleado
+      path: /api/paciente/**
+    empresa:
+      service-id: servicio.empresa
+      path: /api/signos/**

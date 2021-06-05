@@ -1,0 +1,13 @@
+package com.daniel.cjavapaciente.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import com.daniel.cjavapaciente.model.Empleado;
+import com.daniel.cjavapaciente.model.Paciente;
+
+ 
+@Repository
+public interface EmpleadoRepository extends MongoRepository<Empleado, Integer> {
+	  
+}

@@ -1,0 +1,5 @@
+package com.daniel.cjavazuul.zuulms.filters;
+
+public class PreLogsFilter {
+
+}

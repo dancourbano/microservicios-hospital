@@ -1,0 +1,52 @@
+package com.daniel.cjavapaciente.model;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection = "empleado")
+public class Empresa {
+	@Id	 
+	private int idEmpresa;
+	private String nombre;
+	private String telefono;
+	private String direccion;
+
+	
+	
+	 
+	public Empresa(int idEmpresa, String nombre, String telefono, String direccion) {
+		super();
+		this.idEmpresa = idEmpresa;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.direccion = direccion;
+	}
+	public int getIdEmpresa() {
+		return idEmpresa;
+	}
+	public void setIdEmpresa(int idSignos) {
+		this.idEmpresa = idSignos;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	
+	
+}

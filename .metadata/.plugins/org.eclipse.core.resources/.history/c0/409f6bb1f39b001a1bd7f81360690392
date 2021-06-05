@@ -1,0 +1,5 @@
+package com.daniel.cjavapaciente.service;
+
+public class SequenceService {
+
+}

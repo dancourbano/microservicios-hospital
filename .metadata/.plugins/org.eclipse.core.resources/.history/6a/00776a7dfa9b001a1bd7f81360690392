@@ -1,0 +1,52 @@
+package com.daniel.cjavasignos.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+ 
+
+@Entity
+@Table(name = "signos")
+public class Empresa {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idSignos;
+	private String temperatura;
+	private String pulso;
+	private String ritmoRespiratorio;
+
+	
+	
+	 
+	public int getIdSignos() {
+		return idSignos;
+	}
+	public void setIdSignos(int idSignos) {
+		this.idSignos = idSignos;
+	}
+	 
+	public String getTemperatura() {
+		return temperatura;
+	}
+	public void setTemperatura(String temperatura) {
+		this.temperatura = temperatura;
+	}
+	public String getPulso() {
+		return pulso;
+	}
+	public void setPulso(String pulso) {
+		this.pulso = pulso;
+	}
+	public String getRitmoRespiratorio() {
+		return ritmoRespiratorio;
+	}
+	public void setRitmoRespiratorio(String ritmoRespiratorio) {
+		this.ritmoRespiratorio = ritmoRespiratorio;
+	}
+	
+}

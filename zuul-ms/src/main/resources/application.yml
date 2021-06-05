@@ -1,0 +1,29 @@
+server:
+  port: 8092
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:8761/eureka
+zuul:
+  routes:
+    empleado:
+      service-id: servicio.empleado
+      path: /api/empleado/**
+    empresa:
+      service-id: servicio.empresa
+      path: /api/empresa/**
+hystrix:
+  command:
+    default:
+      execution:
+        iso lation:
+          thread:
+            timeoutInMilliseconds: 30000
+
+
+ribbon:
+   ReadTimeout: 60000
+   connection-timeout: 3000
+   eureka:
+      enabled: true
+ 

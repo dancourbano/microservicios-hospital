@@ -1,0 +1,25 @@
+package com.daniel.cjavapaciente.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
+
+import com.daniel.cjavapaciente.model.Sequence;
+
+@Service
+public class SequenceService {
+	@Autowired
+	private MongoOperations mongo;
+
+ 
+	public Long getNextValue(String sequenceId) {
+		//https://docs.mongodb.com/v3.0/tutorial/create-an-auto-incrementing-field/
+		final Sequence sequence = mongo.findAndModify(
+				query(where("_id").is(sequenceId)),
+				new Update().inc("value",1),
+				options().returnNew(true).upsert(true),
+				Sequence.class);
+		return sequence.getValue();
+	}
+}

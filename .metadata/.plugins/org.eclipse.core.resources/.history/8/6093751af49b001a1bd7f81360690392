@@ -1,0 +1,5 @@
+package com.daniel.cjavapaciente.repository;
+
+public interface SequenceRepository {
+
+}

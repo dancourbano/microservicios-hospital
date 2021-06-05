@@ -1,0 +1,68 @@
+package com.daniel.cjavasignos.controller;
+
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.daniel.cjavasignos.client.EurekaClient;
+import com.daniel.cjavasignos.model.Paciente;
+import com.daniel.cjavasignos.model.Signos;
+import com.daniel.cjavasignos.repository.SignosRepository;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
+
+@RestController
+@RequestMapping("*")
+public class SignosController {
+	@Autowired
+	private Environment env;
+	@Autowired
+	private SignosRepository service;
+	@Autowired
+	private EurekaClient eureka;
+	@Autowired
+	private RestTemplate restTemplate;
+	 
+	 
+	/*@HystrixCommand(fallbackMethod = "fallbackMethod")
+	@PostMapping(value = "/signos/")
+	public void crearSignos(@RequestBody Signos signos) {
+		//URI catalogoURI = eureka.getUri("SERVICIO.CATALOGO");
+		//Producto prod = restTemplate.getForObject(catalogoURI.resolve("/producto/"+codigo), Producto.class);
+		Integer id=signos.getPaciente().getIdPaciente();
+		Paciente paciente = restTemplate.getForObject("http://SERVICIO.PACIENTE/paciente/"+id, Paciente.class);
+		signos.setPaciente(paciente);
+		service.save(signos);
+	}*/
+	@GetMapping("/signos/{codigo}")
+	public Optional<Signos> getProducto(@PathVariable Integer codigo)
+	{
+		Optional<Signos> prod = service.findById(codigo);
+		return prod;
+	} 
+	@HystrixCommand(fallbackMethod = "fallbackMethod")
+	@GetMapping(value = "/paciente/{id}")
+	public Paciente listarId(@PathVariable("id") Integer id) {
+		//URI catalogoURI = eureka.getUri("SERVICIO.CATALOGO");
+		//Producto prod = restTemplate.getForObject(catalogoURI.resolve("/producto/"+codigo), Producto.class);
+		Paciente paciente = restTemplate.getForObject("http://SERVICIO.PACIENTE/paciente/"+id, Paciente.class);
+		return paciente;
+	}
+	 
+	 
+}
